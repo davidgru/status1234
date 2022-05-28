@@ -13,11 +13,11 @@ static const size_t max_block_size = 128;
 static void updatestatus(sblock_t* block)
 {
     time_t tim;
-	struct tm *timtm;
-	tim = time(NULL);
-	timtm = localtime(&tim);
-	if (timtm == NULL) {
-		return;
+    struct tm *timtm;
+    tim = time(NULL);
+    timtm = localtime(&tim);
+    if (timtm == NULL) {
+        return;
     }
     strftime(block->status, max_block_size, fmt, timtm);
 }

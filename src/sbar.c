@@ -67,8 +67,8 @@ static char* makestatus(sbar_t* bar)
 static void update(sbar_t* bar, char* status)
 {
     // printf("%s\n", status);
-	XStoreName(bar->dpy, DefaultRootWindow(bar->dpy), status);
-	XSync(bar->dpy, False);
+    XStoreName(bar->dpy, DefaultRootWindow(bar->dpy), status);
+    XSync(bar->dpy, False);
 }
 
 

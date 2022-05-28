@@ -22,27 +22,27 @@ void msleep(long msec)
 
 int round_int(int num, int denom)
 {
-	int c = (1000 * num) / denom;
-	return c % 10 < 5 ? c / 10 : c / 10 + 1;
+    int c = (1000 * num) / denom;
+    return c % 10 < 5 ? c / 10 : c / 10 + 1;
 }
 
 
 char* smprintf(const char *fmt, ...)
 {
-	va_list args;
+    va_list args;
 
-	va_start(args, fmt);
-	int len = vsnprintf(NULL, 0, fmt, args) + 1;
-	va_end(args);
+    va_start(args, fmt);
+    int len = vsnprintf(NULL, 0, fmt, args) + 1;
+    va_end(args);
 
-	char* out = malloc(len);
-	if (out == NULL) {
-		return NULL;
-	}
+    char* out = malloc(len);
+    if (out == NULL) {
+        return NULL;
+    }
 
-	va_start(args, fmt);
-	vsnprintf(out, len, fmt, args);
-	va_end(args);
+    va_start(args, fmt);
+    vsnprintf(out, len, fmt, args);
+    va_end(args);
 
-	return out;
+    return out;
 }

@@ -5,7 +5,7 @@
 #include <X11/Xlib.h>
 
 
-#include "block/sblock.h"
+#include "sblock.h"
 
 
 typedef enum selem_type_t {

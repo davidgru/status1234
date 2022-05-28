@@ -39,12 +39,12 @@ make && sudo make install
 
 Run with
 ```
-x11status
+status1234
 ```
 
 To run it with `startx`, add
 ```
-x11status &
+status1234 &
 ```
 to your `.xinitrc` file.
 

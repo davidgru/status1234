@@ -9,11 +9,11 @@ Example status:
 +-------------------------------------------------------------------------------------+
 ```
 
-Each block has it's own thread, which makes asynchronous updates possible. Each block can deside on it's own, when he wants to update itsself.The bar only redraws if there is an actual update to a block.
+Each block has it's own thread, which makes asynchronous updates possible. Each block can decide on it's own, when it wants to update itsself. The bar only redraws if there is an actual update to a block. Combined that leads to less unnecessary updates overall.
 
-For an example for a block that updates ...
- * asynchronously, see the [audio](./src/block/saudio.c) block implementation.
- * periodically, see the [time](./src/block/stime.c) block implementation.
+For an example of a block that updates ...
+ * ... asynchronously, see the [audio](./src/block/saudio.c) block implementation.
+ * ... periodically, see the [time](./src/block/stime.c) block implementation.
 
 
 # Dependencies

@@ -37,9 +37,10 @@ error:
 
 void squotes_routine(sblock_t* block)
 {
+    float last_quote;
     for(;;msleep(interval)) {
         float quote, last_close;
-        if (getquote("NVAX", &quote, &last_close)) {
+        if (getquote("NVAX", &quote, &last_close) || quote == last_quote) {
             continue;
         }
         sblock_lock(block);
@@ -49,5 +50,6 @@ void squotes_routine(sblock_t* block)
         block->status = smprintf("NVAX $%.2f %.2f%%", quote, (quote - last_close) / last_close * 100);
         sblock_unlock(block);
         sblock_signal_main(block);
+        last_quote = quote;
     }
 }

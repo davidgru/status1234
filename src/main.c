@@ -10,6 +10,7 @@
 
 static sbar_t bar;
 
+static sblock_t squotes;
 static sblock_t ssysinfo;
 static sblock_t swifi;
 static sblock_t saudio;
@@ -21,6 +22,7 @@ int main()
 {
     sbar_init(&bar);
 
+    sblock_init(&squotes, squotes_routine);
     sblock_init(&ssysinfo, ssysinfo_routine);
     sblock_init(&swifi, swifi_routine);
     sblock_init(&saudio, saudio_routine);
@@ -29,6 +31,9 @@ int main()
     sblock_init(&stime, stime_routine);
 
 
+    sbar_add_delim(&bar, " ");
+    sbar_add_block(&bar, &squotes);
+    sbar_add_delim(&bar, " | ");
     sbar_add_block(&bar, &ssysinfo);
     sbar_add_delim(&bar, " | ");
     sbar_add_block(&bar, &swifi);
@@ -47,6 +52,7 @@ int main()
 
     sbar_deinit(&bar);
 
+    sblock_deinit(&squotes);
     sblock_deinit(&ssysinfo);
     sblock_deinit(&swifi);
     sblock_deinit(&saudio);

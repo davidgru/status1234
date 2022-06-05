@@ -8,7 +8,7 @@ SRC_DIR := src
 OBJ_DIR := obj
 BIN_DIR := bin
 
-_SRC := sblock.c block/stime.c block/swifi.c block/saudio.c block/smic.c block/sbattery.c block/ssysinfo.c \
+_SRC := sblock.c block/stime.c block/swifi.c block/saudio.c block/smic.c block/sbattery.c block/ssysinfo.c block/squotes.c \
 		main.c sbar.c util.c
 
 SRC := $(addprefix $(SRC_DIR)/, $(_SRC))

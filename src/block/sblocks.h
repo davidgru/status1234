@@ -23,3 +23,7 @@ void sbattery_routine(sblock_t* block);
 
 // shows cpu, ram, disk usage
 void ssysinfo_routine(sblock_t* block);
+
+
+// gets stock quotes
+void squotes_routine(sblock_t* block);

@@ -45,14 +45,23 @@ error:
 
 static int get_ram_usage(unsigned long* out_usedmib, unsigned long* out_totalmib, unsigned long* out_percent)
 {
-    struct sysinfo info;
-    if (sysinfo(&info)) {
-        return -1;
+    FILE* fd = popen("free -m", "r");
+    if (fd == NULL) {
+        goto error;
     }
-    *out_usedmib = (info.totalram - info.freeram) / (1024 * 1024);
-    *out_totalmib = info.totalram / (1024 * 1024);
-    *out_percent = (info.totalram - info.freeram) * 100 / info.totalram;
+    char buff[1024];
+    fgets(buff, 1024, fd);
+    if (fscanf(fd, "Mem: %lu %lu", out_totalmib, out_usedmib) != 2) {
+        goto error;
+    }
+    pclose(fd);
+    *out_percent = *out_usedmib * 100 / *out_totalmib;
     return 0;
+error:
+    if (fd != NULL) {
+        pclose(fd);
+    }
+    return -1;
 }
 
 

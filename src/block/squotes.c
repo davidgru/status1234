@@ -6,7 +6,7 @@
 
 #include "util.h"
 
-static const int interval = 1000;
+static const int interval = 60 * 1000;
 
 
 int getquote(const char* stock, float* out_quote, float* out_last_close)
@@ -37,7 +37,7 @@ error:
 
 void squotes_routine(sblock_t* block)
 {
-    float last_quote;
+    float last_quote = -1;
     for(;;msleep(interval)) {
         float quote, last_close;
         if (getquote("NVAX", &quote, &last_close) || quote == last_quote) {

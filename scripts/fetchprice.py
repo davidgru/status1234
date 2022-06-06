@@ -10,7 +10,7 @@
 # fetchprice NVAX
 #
 # Output
-# {regularMarketPrice} {regularMarketPreviousClose}
+# {regularMarketPrice} {regularMarketChangePercent}
 # 
 
 import requests, sys
@@ -21,6 +21,6 @@ try:
         headers= {'User-agent': 'Mozilla/5.0'}
     )
     data = resp.json()['quoteResponse']['result'][0]
-    print(data['regularMarketPrice'], data['regularMarketPreviousClose'])
+    print(data['regularMarketPrice'], data['regularMarketChangePercent'])
 except:
     print('Error')

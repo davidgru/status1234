@@ -47,7 +47,7 @@ void squotes_routine(sblock_t* block)
         if (block->status) {
             free(block->status);
         }
-        block->status = smprintf("NVAX $%.2f %s%.2f%%", quote,  change_percent < 0 ? "" : "", fabs(change_percent));
+        block->status = smprintf("$NVAX %.2f %s%.2f%%", quote,  change_percent < 0 ? "" : "", fabs(change_percent));
         sblock_unlock(block);
         sblock_signal_main(block);
         last_quote = quote;

@@ -2,7 +2,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-
+#include <math.h>
 
 #include "util.h"
 
@@ -47,7 +47,7 @@ void squotes_routine(sblock_t* block)
         if (block->status) {
             free(block->status);
         }
-        block->status = smprintf("NVAX $%.2f %s%.2f%%", quote, quote < last_close ? "" : "", (quote - last_close) / last_close * 100);
+        block->status = smprintf("NVAX $%.2f %s%.2f%%", quote, quote < last_close ? "" : "", fabs(quote - last_close) / last_close * 100);
         sblock_unlock(block);
         sblock_signal_main(block);
         last_quote = quote;

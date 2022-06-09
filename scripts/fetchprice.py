@@ -21,6 +21,13 @@ try:
         headers= {'User-agent': 'Mozilla/5.0'}
     )
     data = resp.json()['quoteResponse']['result'][0]
-    print(data['regularMarketPrice'], data['regularMarketChangePercent'])
+
+    market_state = data['marketState']
+    if market_state == 'PRE':
+        print('PRE', data['preMarketPrice'], data['preMarketChangePercent'])
+    elif market_state == 'POST':
+        print('POST', data['postMarketPrice'], data['postMarketChangePercent'])
+    else:
+        print(data['regularMarketPrice'], data['regularMarketChangePercent'])
 except:
     print('Error')

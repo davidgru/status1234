@@ -7,7 +7,7 @@
 
 #include "util.h"
 
-static const int interval = 60 * 1000;
+static const int interval = 15 * 1000;
 
 
 typedef enum market_state_t {
@@ -16,7 +16,7 @@ typedef enum market_state_t {
 
 int getquote(const char* stock, market_state_t* out_state, float* out_quote, float* out_change_percent)
 {
-    char state[5];
+    char state[8];
 
     char* cmd = smprintf("~/.status-scripts/fetchprice.py %s", stock);
 
@@ -24,13 +24,13 @@ int getquote(const char* stock, market_state_t* out_state, float* out_quote, flo
     if (fd == NULL) {
         goto error;
     }
-    if (fscanf(fd, "%4s %f %f", state, out_quote, out_change_percent) != 3) {
+    if (fscanf(fd, "%7s %f %f", state, out_quote, out_change_percent) != 3) {
         goto error;
     }
 
-    if (strncmp(state, "PRE", 4) == 0) {
+    if (strncmp(state, "PRE", 7) == 0) {
         *out_state = pre;
-    } else if (strncmp(state, "POST", 4) == 0) {
+    } else if (strncmp(state, "POST", 7) == 0) {
         *out_state = post;
     } else {
         *out_state = regular;
@@ -64,8 +64,8 @@ void squotes_routine(sblock_t* block)
         if (block->status) {
             free(block->status);
         }
-        block->status = smprintf("$NVAX %s %.2f %s%.2f%%",
-            state == pre ? "(pre)" : state == post ? "(post)" : "",
+        block->status = smprintf("$NVAX %s%.2f %s%.2f%%",
+            state == pre ? "(pre) " : state == post ? "(post) " : "",
             quote,
             change_percent < 0 ? "" : "",
             fabs(change_percent));

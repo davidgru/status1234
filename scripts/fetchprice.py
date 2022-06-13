@@ -28,6 +28,6 @@ try:
     elif market_state == 'POST':
         print('POST', data['postMarketPrice'], data['postMarketChangePercent'])
     else:
-        print(data['regularMarketPrice'], data['regularMarketChangePercent'])
+        print('REGULAR', data['regularMarketPrice'], data['regularMarketChangePercent'])
 except:
     print('Error')

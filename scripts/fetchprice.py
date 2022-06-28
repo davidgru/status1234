@@ -25,7 +25,7 @@ try:
     market_state = data['marketState']
     if market_state == 'PRE':
         print('PRE', data['preMarketPrice'], data['preMarketChangePercent'])
-    elif market_state == 'POST':
+    elif market_state == 'POST' or market_state == 'POSTPOST':
         print('POST', data['postMarketPrice'], data['postMarketChangePercent'])
     else:
         print('REGULAR', data['regularMarketPrice'], data['regularMarketChangePercent'])

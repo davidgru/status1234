@@ -31,8 +31,8 @@ int main()
     sblock_init(&stime, stime_routine);
 
 
-    sbar_add_delim(&bar, " ");
-    sbar_add_block(&bar, &squotes);
+    // sbar_add_delim(&bar, " ");
+    // sbar_add_block(&bar, &squotes);
     sbar_add_delim(&bar, " | ");
     sbar_add_block(&bar, &ssysinfo);
     sbar_add_delim(&bar, " | ");
